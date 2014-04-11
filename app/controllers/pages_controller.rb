@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   def about
   	#interaction with the database for about
   end
+  def history
+  	#The history page
+  end
+
 end
