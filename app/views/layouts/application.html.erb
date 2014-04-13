@@ -13,6 +13,13 @@
 
 	<div class="container">
 
+<!--This is a necessary step for Devise...Flash Comment -->		
+		<% flash.each do |name, msg| %>
+
+			<%= content_tag(:div, msg, class: "alert alert-info")
+
+		<% end %>
+
 		<%= yield %>
 
 	</div>
