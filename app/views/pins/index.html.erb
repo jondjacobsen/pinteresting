@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th>Description</th>
-          <th></th>
+          <th>User Id</th>
           <th></th>
           <th></th>
         </tr>
@@ -17,9 +17,12 @@
         <% @pins.each do |pin| %>
           <tr>
             <td><%= pin.description %></td>
+            <td><%= pin.user.email if pin.user%></td>
             <td><span class="glyphicon glyphicon-search"></span><%= link_to 'Show', pin %></td>
+            <% if pin.user == current_user %>
             <td><span class="glyphicon glyphicon-wrench"></span><%= link_to 'Edit', edit_pin_path(pin) %></td>
             <td><span class="glyphicon glyphicon-trash"></span><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -27,7 +30,12 @@
 
     <br>
     </div>
-    <div class="panel panel-footer"><span class="glyphicon glyphicon-pencil"></span>
-    <%= link_to 'New Pin', new_pin_path %>
+    <div class="panel panel-footer">
+    <% if user_signed_in? %>   
+    <span class="glyphicon glyphicon-pencil"></span>
+    
+     
+      <%= link_to 'New Pin', new_pin_path %>
+    <% end %>  
     </div>
 </div>  
