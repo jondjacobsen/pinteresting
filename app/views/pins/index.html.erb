@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel panel-heading">  
+  <h1>Listing pins</h1>
+  </div>
+  <div class="panel panel-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @pins.each do |pin| %>
+          <tr>
+            <td><%= pin.description %></td>
+            <td><span class="glyphicon glyphicon-search"></span><%= link_to 'Show', pin %></td>
+            <td><span class="glyphicon glyphicon-wrench"></span><%= link_to 'Edit', edit_pin_path(pin) %></td>
+            <td><span class="glyphicon glyphicon-trash"></span><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+    </div>
+    <div class="panel panel-footer"><span class="glyphicon glyphicon-pencil"></span>
+    <%= link_to 'New Pin', new_pin_path %>
+    </div>
+</div>  
