@@ -13,6 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass' 
 gem 'devise'
+gem 'paperclip', github: 'thoughtbot/paperclip' 
 
 group :development, :test do
 	gem 'sqlite3'

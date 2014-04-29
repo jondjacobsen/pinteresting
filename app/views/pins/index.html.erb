@@ -1,41 +1,35 @@
-<div class="panel panel-default">
-  <div class="panel panel-heading">  
-  <h1>Listing pins</h1>
-  </div>
-  <div class="panel panel-body">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Description</th>
-          <th>User Id</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
+<h1>Listing pins</h1>
+<div class="panel panel-body">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Description</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-      <tbody>
-        <% @pins.each do |pin| %>
-          <tr>
-            <td><%= pin.description %></td>
-            <td><%= pin.user.email if pin.user%></td>
-            <td><span class="glyphicon glyphicon-search"></span><%= link_to 'Show', pin %></td>
-            <% if pin.user == current_user %>
-            <td><span class="glyphicon glyphicon-wrench"></span><%= link_to 'Edit', edit_pin_path(pin) %></td>
-            <td><span class="glyphicon glyphicon-trash"></span><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-          </tr>
+  <tbody>
+    <% @pins.each do |pin| %>
+      <tr>
+        <td><%= image_tag pin.image.url(:medium) %></td>
+        <td><%= pin.description %></td>
+        <td><%= pin.user.email if pin.user %></td>
+        <td><%= link_to 'Show', pin_path(pin) %></td>
+        <% if pin.user == current_user %>
+          <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
+          <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-      </tbody>
-    </table>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
 
-    <br>
-    </div>
-    <div class="panel panel-footer">
-    <% if user_signed_in? %>   
-    <span class="glyphicon glyphicon-pencil"></span>
-    
-     
-      <%= link_to 'New Pin', new_pin_path %>
-    <% end %>  
-    </div>
-</div>  
+<br>
+<% if user_signed_in? %>
+  <%= link_to 'New Pin', new_pin_path %>
+<% end %>
